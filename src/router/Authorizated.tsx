@@ -5,7 +5,10 @@ import { RoutesTree } from './routes'
 const Authorizated: FC = () => {
   return (
     <Routes>
-      <Route path={RoutesTree.main.path} element={RoutesTree.main.component} />
+      <Route
+        path={RoutesTree.main.path}
+        element={<RoutesTree.main.component />}
+      />
 
       <Route
         path="*"

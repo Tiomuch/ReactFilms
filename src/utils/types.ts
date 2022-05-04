@@ -1,5 +1,4 @@
 export type TCSSConstructor<T> = (props: T) => string
-import 'typeface-roboto'
 
 export type TFontConstructorArgs = {
   size?: string

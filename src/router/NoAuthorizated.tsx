@@ -7,11 +7,11 @@ const NoAuthorizated: FC = () => {
     <Routes>
       <Route
         path={RoutesTree.login.path}
-        element={RoutesTree.login.component}
+        element={<RoutesTree.login.component />}
       />
       <Route
         path={RoutesTree.register.path}
-        element={RoutesTree.register.component}
+        element={<RoutesTree.register.component />}
       />
 
       <Route

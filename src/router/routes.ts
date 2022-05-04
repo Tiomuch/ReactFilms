@@ -1,4 +1,4 @@
-import { LoginPage, RegisterPage } from '../pages'
+import { LoginPage, MainPage, RegisterPage } from '../pages'
 import { TRoutesTree } from './types'
 
 export const RoutesTree: TRoutesTree = {

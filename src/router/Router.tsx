@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from 'react'
-import { HashRouter } from 'react-router-dom'
+import { BrowserRouter, HashRouter } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 // import { getUserSelector, initAppAction, refreshTokenAction } from '../store'
 // import { useTypedSelector } from '../hooks'
@@ -17,13 +17,7 @@ const Router: FC = () => {
 
   return (
     <HashRouter basename="/">
-      {true ? (
-        // <LayoutComponent>
-        <Authorizated />
-      ) : (
-        // </LayoutComponent>
-        <NoAuthorizated />
-      )}
+      {false ? <Authorizated /> : <NoAuthorizated />}
     </HashRouter>
   )
 }

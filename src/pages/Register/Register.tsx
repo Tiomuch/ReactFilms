@@ -1,6 +1,6 @@
 import React, { FC, useCallback, useMemo } from 'react'
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+// import { useDispatch } from 'react-redux'
 import { Divider } from '../../components'
 // import { reEmail, rePassword } from '../../consts'
 // import { forgotPasswordAction, loginAction, registerAction } from '../../store'
@@ -19,7 +19,7 @@ import {
 // import { TForm } from './types'
 
 export const Register: FC = () => {
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
   // const [form, setForm] = useState<TForm>({
   //   email: '',
@@ -35,44 +35,6 @@ export const Register: FC = () => {
   //   errorText: '',
   //   value: false,
   // })
-
-  // const onPressRegister = () => {
-  //   try {
-  //     if (!reEmail.test(String(form.email).toLowerCase())) {
-  //       setEmailError({ value: true, errorText: 'Enter valid email' })
-  //     } else {
-  //       setEmailError({ value: false, errorText: '' })
-  //     }
-
-  //     if (!rePassword.test(String(form.password).toLowerCase())) {
-  //       setPasswordError({ value: true, errorText: 'Enter valid password' })
-  //     } else {
-  //       setPasswordError({ value: false, errorText: '' })
-  //     }
-
-  //     if (!rePassword.test(String(form.repeatPassword).toLowerCase())) {
-  //       setRepeatPasswordError({
-  //         value: true,
-  //         errorText: 'Enter valid password',
-  //       })
-  //     } else if (form.password !== form.repeatPassword) {
-  //       setRepeatPasswordError({
-  //         value: true,
-  //         errorText: 'Password mismatch',
-  //       })
-  //     } else {
-  //       setRepeatPasswordError({ value: false, errorText: '' })
-  //     }
-
-  //     !!reEmail.test(String(form.email).toLowerCase()) &&
-  //       !!rePassword.test(String(form.password).toLowerCase()) &&
-  //       !!rePassword.test(String(form.repeatPassword).toLowerCase()) &&
-  //       form.password === form.repeatPassword &&
-  //       dispatch(registerAction.request(form))
-  //   } catch (error) {
-  //     Log.ruddy('Event: onPressRegister')
-  //   }
-  // }
 
   return (
     <Container>
@@ -129,7 +91,7 @@ export const Register: FC = () => {
 
         <Divider height={100} />
 
-        <StyledText>Do you have an account?</StyledText>
+        <StyledText>Ви вже маєте аккаунт?</StyledText>
 
         <Divider height={10} />
 
@@ -138,7 +100,7 @@ export const Register: FC = () => {
             pathname: '/login',
           }}
         >
-          Sign In
+          Увійти
         </StyledLink>
       </LoginWrapper>
     </Container>

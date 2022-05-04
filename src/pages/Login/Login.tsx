@@ -1,6 +1,6 @@
 import React, { FC, useCallback, useMemo } from 'react'
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+// import { useDispatch } from 'react-redux'
 import { Divider } from '../../components'
 // import { reEmail, rePassword } from '../../consts'
 // import { forgotPasswordAction, loginAction } from '../../store'
@@ -19,7 +19,7 @@ import {
 import { TForm } from './types'
 
 export const Login: FC = () => {
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
   // const [form, setForm] = useState<TForm>({ email: '', password: '' })
   // const [emailError, setEmailError] = useState({ errorText: '', value: false })
@@ -93,19 +93,9 @@ export const Login: FC = () => {
 
         {/* <StyledButton onClick={onPressLogin}>Sign In</StyledButton> */}
 
-        <Divider height={30} />
-
-        <StyledLink
-          to={{
-            pathname: '/restore-password',
-          }}
-        >
-          Forgot password
-        </StyledLink>
-
         <Divider height={100} />
 
-        <StyledText>Don't have an account?</StyledText>
+        <StyledText>Ще не маєте аккаунт?</StyledText>
 
         <Divider height={10} />
 
@@ -114,7 +104,7 @@ export const Login: FC = () => {
             pathname: '/register',
           }}
         >
-          Sign Up
+          Зареєструватися
         </StyledLink>
       </LoginWrapper>
     </Container>
