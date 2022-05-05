@@ -1,7 +1,10 @@
+import { zodResolver } from '@hookform/resolvers/zod'
 import React, { FC, useCallback, useMemo } from 'react'
 import { useState } from 'react'
-// import { useDispatch } from 'react-redux'
+import { Controller, SubmitHandler, useForm } from 'react-hook-form'
+import { useDispatch } from 'react-redux'
 import { Divider } from '../../components'
+import { LoginScheme } from '../../consts'
 // import { reEmail, rePassword } from '../../consts'
 // import { forgotPasswordAction, loginAction } from '../../store'
 import {
@@ -19,79 +22,85 @@ import {
 import { TForm } from './types'
 
 export const Login: FC = () => {
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
-  // const [form, setForm] = useState<TForm>({ email: '', password: '' })
-  // const [emailError, setEmailError] = useState({ errorText: '', value: false })
-  // const [passwordError, setPasswordError] = useState({
-  //   errorText: '',
-  //   value: false,
-  // })
+  const {
+    control,
+    handleSubmit,
+    setValue,
+    getValues,
+    trigger,
+    formState: { isValid, errors },
+  } = useForm<TForm>({
+    resolver: zodResolver(LoginScheme),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  })
 
-  // const inputHandler = useCallback(
-  //   e => {
-  //     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
-  //   },
-  //   [form],
-  // )
+  const onChangeText = (
+    text: any,
+    onChange: (...event: any[]) => void,
+    name: any,
+  ) => {
+    onChange(text)
 
-  // const onPressLogin = () => {
-  //   try {
-  //     if (!reEmail.test(String(form.email).toLowerCase())) {
-  //       setEmailError({ value: true, errorText: 'Enter valid email' })
-  //     } else {
-  //       setEmailError({ value: false, errorText: '' })
-  //     }
+    trigger(name)
+  }
 
-  //     if (!rePassword.test(String(form.password).toLowerCase())) {
-  //       setPasswordError({ value: true, errorText: 'Enter valid password' })
-  //     } else {
-  //       setPasswordError({ value: false, errorText: '' })
-  //     }
+  const onSubmit: SubmitHandler<TForm> = filledData => {
+    if (isValid) {
+      console.log('filledData', filledData)
 
-  //     !!reEmail.test(String(form.email).toLowerCase()) &&
-  //       !!rePassword.test(String(form.password).toLowerCase()) &&
-  //       dispatch(loginAction.request(form))
-  //   } catch (error) {
-  //     Log.ruddy('Event: onPressLogin')
-  //   }
-  // }
+      // dispatch(sendSupportMessageAction.request({ data: filledData }))
+    }
+  }
 
   return (
     <Container>
       <LoginWrapper>
-        {/* <StyledTextField
-          error={emailError.value}
-          id="standard-basic"
+        <Controller
+          control={control}
+          render={({ field: { onChange, value } }) => (
+            <StyledTextField
+              error={!!errors?.email?.message}
+              id="standard-basic"
+              value={value}
+              label="Email"
+              onChange={v => onChangeText(v.target.value, onChange, 'email')}
+              helperText={errors?.email?.message}
+              variant="standard"
+            />
+          )}
           name="email"
-          value={form.email}
-          inputProps={{
-            style: {
-              paddingLeft: '5px',
-            },
-          }}
-          label="Email"
-          onChange={v => inputHandler(v)}
-          helperText={emailError.errorText}
-          variant="standard"
-        /> */}
+        />
 
         <Divider height={20} />
 
-        {/* <StyledFormControl error={passwordError.value}>
-          <StyledInputLabel htmlFor="name-label">Password</StyledInputLabel>
-          <StyledPasswordField
-            id="name-label"
-            name="password"
-            value={form.password}
-            onChange={(v: any) => inputHandler(v)}
-          />
-          <StyledFormHelperText>{passwordError.errorText}</StyledFormHelperText>
-        </StyledFormControl> */}
+        <Controller
+          control={control}
+          render={({ field: { onChange, value } }) => (
+            <StyledFormControl error={!!errors?.password?.message}>
+              <StyledInputLabel htmlFor="name-label1">Пароль</StyledInputLabel>
+              <StyledPasswordField
+                id="name-label1"
+                value={value}
+                onChange={(v: any) =>
+                  onChangeText(v.target.value, onChange, 'password')
+                }
+              />
+              <StyledFormHelperText>
+                {errors?.password?.message}
+              </StyledFormHelperText>
+            </StyledFormControl>
+          )}
+          name="password"
+        />
 
         <Divider height={80} />
 
-        {/* <StyledButton onClick={onPressLogin}>Sign In</StyledButton> */}
+        <StyledButton onClick={handleSubmit(onSubmit)}>Увійти</StyledButton>
 
         <Divider height={100} />
 

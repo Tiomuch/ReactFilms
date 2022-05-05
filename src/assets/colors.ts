@@ -4,7 +4,7 @@ export const COLORS = {
   darkBlack: '#4F4F4F',
   darkDeepBlack: '#4A4A4A',
   green: '#00C58D',
-  lightGreen: '#27AE60',
+  lightGreen: '#90EE90',
   greenYellow: '#E8C54F',
   white: '#FFFFFF',
   lightWhite: '#F7F7F7',
@@ -29,4 +29,5 @@ export const COLORS = {
   tightBlack: '#151719',
   newBlue: '#2D9CDB',
   newDark: '#1D1D1D',
+  pink: '#FFC0CB',
 }

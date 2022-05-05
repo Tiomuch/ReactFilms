@@ -13,7 +13,7 @@ export const Container = styled.div`
   width: 100vw;
   height: 100vh;
 
-  background: ${COLORS.gray};
+  background: ${COLORS.lightGreen};
 
   ${FLEX({})}
 `
@@ -25,7 +25,7 @@ export const LoginWrapper = styled.div`
 
   border-radius: 3px;
 
-  background: ${COLORS.gray};
+  background: ${COLORS.lightGreen};
 `
 
 export const StyledTextField = styled(TextField)`
@@ -39,7 +39,7 @@ export const StyledButton = styled.div`
   ${FLEX({})}
   align-items: center;
   text-align: center;
-  background: linear-gradient(91.6deg, #4450b5 19.37%, #263293 86.5%);
+  background: ${COLORS.green};
   border-radius: 40px;
   font-size: 24px;
   color: ${COLORS.white};
