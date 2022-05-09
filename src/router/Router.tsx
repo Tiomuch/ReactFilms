@@ -3,7 +3,7 @@ import { BrowserRouter, HashRouter } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 // import { getUserSelector, initAppAction, refreshTokenAction } from '../store'
 // import { useTypedSelector } from '../hooks'
-// import { LayoutComponent } from '../pages'
+import { LayoutComponent } from '../pages'
 import Authorizated from './Authorizated'
 import NoAuthorizated from './NoAuthorizated'
 
@@ -17,7 +17,13 @@ const Router: FC = () => {
 
   return (
     <HashRouter basename="/">
-      {false ? <Authorizated /> : <NoAuthorizated />}
+      {true ? (
+        <LayoutComponent>
+          <Authorizated />
+        </LayoutComponent>
+      ) : (
+        <NoAuthorizated />
+      )}
     </HashRouter>
   )
 }
