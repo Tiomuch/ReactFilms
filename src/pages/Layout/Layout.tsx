@@ -4,12 +4,11 @@ import { LayoutWrapper, ContentWrapper, ContentInnerWrapper } from './styled'
 
 const Layout = ({ children }: any) => {
   return (
-    <>
+    <LayoutWrapper>
       <Topbar />
-      <LayoutWrapper>
-        <ContentWrapper>{children}</ContentWrapper>
-      </LayoutWrapper>
-    </>
+
+      <ContentWrapper>{children}</ContentWrapper>
+    </LayoutWrapper>
   )
 }
 

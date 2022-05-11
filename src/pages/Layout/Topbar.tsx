@@ -32,13 +32,9 @@ const Topbar = () => {
         <Logo>React Films</Logo>
       </StyledLeftController>
 
-      <RightPart>
-        {/* <Logo>{user?.role?.title ?? 'Administrator'}</Logo> */}
+      <MiniTopIcon src={Assets.PLUS_ICON} />
 
-        <Divider width={15} />
-
-        <MiniTopIcon onClick={logout} src={Assets.LOGOUT_ICON} />
-      </RightPart>
+      <MiniTopIcon onClick={logout} src={Assets.LOGOUT_ICON} />
     </TopbarWrapper>
   )
 }

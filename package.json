@@ -22,6 +22,7 @@
     "eslint": "^8.11.0",
     "material-ui-password-field": "^2.1.2",
     "prettier": "^2.6.0",
+    "rc-table": "^7.24.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.30.0",

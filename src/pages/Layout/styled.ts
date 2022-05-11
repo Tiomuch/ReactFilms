@@ -4,16 +4,16 @@ import { FLEX, FONT, SHADOW } from '../../utils'
 import { COLORS } from '../../assets'
 
 export const TopbarWrapper = styled.div`
-  width: 100wv;
+  // width: 100%;
   padding: 5px 60px;
 
   height: 64px;
 
   background-color: ${COLORS.lightGreen};
 
-  ${SHADOW({})};
+  // ${SHADOW({})};
 
-  ${FLEX({ align: 'center', justify: 'space-between', direction: 'row' })}
+  // ${FLEX({ align: 'center', justify: 'space-between', direction: 'row' })}
 `
 
 export const RightPart = styled.div`
@@ -63,15 +63,12 @@ export const DefaultPathText = styled.p`
 
 export const LayoutWrapper = styled.div`
   width: 100%;
-  height: 100%;
-
-  ${FLEX({ align: 'flex-start', wrap: 'nowrap' })}
+  height: 100vh;
 `
 
 export const ContentWrapper = styled.div`
   width: 100%;
-  height: 100%;
-  background: ${COLORS.gray};
+  // height: 100%;
 `
 
 export const ContentInnerWrapper = styled.div`
