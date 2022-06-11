@@ -4,6 +4,7 @@ import {
   initAppAction,
   loginAction,
   registerAction,
+  restorePasswordAction,
 } from './actions'
 
 import { getUserSelector } from './selectors'
@@ -40,10 +41,10 @@ function* getUserWorker() {
 function* loginWorker({ payload }: ReturnType<typeof loginAction['request']>) {
   try {
     const response: PromiseReturnType<ReturnType<typeof UserAPI.login>> =
-      yield call([UserAPI, UserAPI.login], payload)
+      yield call([UserAPI, UserAPI.login], { ...payload })
 
     if (response) {
-      yield put(loginAction.success(response.data))
+      yield put(loginAction.success(response))
     }
   } catch (e: any) {
     console.log('Error: loginWorker', e)
@@ -57,15 +58,35 @@ function* registerWorker({
 }: ReturnType<typeof registerAction['request']>) {
   try {
     const response: PromiseReturnType<ReturnType<typeof UserAPI.register>> =
-      yield call([UserAPI, UserAPI.register], payload)
+      yield call([UserAPI, UserAPI.register], { ...payload })
 
     if (response) {
-      yield put(registerAction.success(response.data))
+      yield put(registerAction.success(response))
     }
   } catch (e: any) {
     console.log('Error: registerWorker', e)
 
     yield put(registerAction.failure(e))
+  }
+}
+
+function* restorePasswordWorker({
+  payload,
+}: ReturnType<typeof restorePasswordAction['request']>) {
+  try {
+    const response: PromiseReturnType<
+      ReturnType<typeof UserAPI.restorePassword>
+    > = yield call([UserAPI, UserAPI.restorePassword], { ...payload })
+
+    if (response) {
+      yield put(restorePasswordAction.success({}))
+
+      alert('Password changed successfully')
+    }
+  } catch (e: any) {
+    console.log('Error: restorePasswordWorker', e)
+
+    yield put(restorePasswordAction.failure(e))
   }
 }
 
@@ -90,6 +111,7 @@ function* initAppWorker() {
 export function* userWatcher() {
   yield takeLatest(loginAction.request, loginWorker)
   yield takeLatest(registerAction.request, registerWorker)
+  yield takeLatest(restorePasswordAction.request, restorePasswordWorker)
   yield takeLatest(getUserAction.request, getUserWorker)
   yield takeLatest(initAppAction.request, initAppWorker)
 }

@@ -1,7 +1,8 @@
 export type TUser = {
   createdAt: string
-  email: string
+  name: string
   password: string
+  secretNumber: number
   updatedAt: string
   _id: string
 }
@@ -14,8 +15,14 @@ export type TInitialState = {
 }
 
 export type LoginUserActionPayload = {
-  email: string
+  name: string
   password: string
+}
+
+export type RegisterUserActionPayload = {
+  name: string
+  password: string
+  secretNumber: number
 }
 
 export type LoginUserActionResponse = any

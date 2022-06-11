@@ -2,8 +2,6 @@ import React, { FC, useCallback, useMemo } from 'react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Divider } from '../../components'
-// import { reEmail, rePassword } from '../../consts'
-// import { forgotPasswordAction, loginAction, registerAction } from '../../store'
 import {
   Container,
   LoginWrapper,
@@ -20,8 +18,9 @@ import { TForm } from './types'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { RegisterScheme } from '../../consts'
+import { registerAction } from '../../store'
 
-export const Register: FC = () => {
+const Register: FC = () => {
   const dispatch = useDispatch()
 
   const {
@@ -34,9 +33,10 @@ export const Register: FC = () => {
   } = useForm<TForm>({
     resolver: zodResolver(RegisterScheme),
     defaultValues: {
-      email: '',
+      name: '',
       password: '',
       repeatPassword: '',
+      secretNumber: undefined,
     },
   })
 
@@ -54,7 +54,13 @@ export const Register: FC = () => {
     if (isValid) {
       console.log('filledData', filledData)
 
-      // dispatch(sendSupportMessageAction.request({ data: filledData }))
+      dispatch(
+        registerAction.request({
+          password: filledData.password,
+          name: filledData.name,
+          secretNumber: filledData.secretNumber,
+        }),
+      )
     }
   }
 
@@ -65,16 +71,16 @@ export const Register: FC = () => {
           control={control}
           render={({ field: { onChange, value } }) => (
             <StyledTextField
-              error={!!errors?.email?.message}
+              error={!!errors?.name?.message}
               id="standard-basic"
               value={value}
-              label="Email"
-              onChange={v => onChangeText(v.target.value, onChange, 'email')}
-              helperText={errors?.email?.message}
+              label="Name"
+              onChange={v => onChangeText(v.target.value, onChange, 'name')}
+              helperText={errors?.name?.message}
               variant="standard"
             />
           )}
-          name="email"
+          name="name"
         />
 
         <Divider height={20} />
@@ -83,7 +89,9 @@ export const Register: FC = () => {
           control={control}
           render={({ field: { onChange, value } }) => (
             <StyledFormControl error={!!errors?.password?.message}>
-              <StyledInputLabel htmlFor="name-label1">Пароль</StyledInputLabel>
+              <StyledInputLabel htmlFor="name-label1">
+                Password
+              </StyledInputLabel>
               <StyledPasswordField
                 id="name-label1"
                 value={value}
@@ -106,7 +114,7 @@ export const Register: FC = () => {
           render={({ field: { onChange, value } }) => (
             <StyledFormControl error={!!errors?.repeatPassword?.message}>
               <StyledInputLabel htmlFor="name-label">
-                Повторіть пароль
+                Repeat password
               </StyledInputLabel>
               <StyledPasswordField
                 id="name-label"
@@ -123,15 +131,34 @@ export const Register: FC = () => {
           name="repeatPassword"
         />
 
+        <Divider height={20} />
+
+        <Controller
+          control={control}
+          render={({ field: { onChange, value } }) => (
+            <StyledTextField
+              error={!!errors?.secretNumber?.message}
+              id="standard-basic"
+              value={(+value).toString()}
+              type="number"
+              label="Secret number"
+              onChange={v =>
+                onChangeText(+v.target.value, onChange, 'secretNumber')
+              }
+              helperText={errors?.secretNumber?.message}
+              variant="standard"
+            />
+          )}
+          name="secretNumber"
+        />
+
         <Divider height={80} />
 
-        <StyledButton onClick={handleSubmit(onSubmit)}>
-          Зареєструватися
-        </StyledButton>
+        <StyledButton onClick={handleSubmit(onSubmit)}>Sign up</StyledButton>
 
         <Divider height={100} />
 
-        <StyledText>Ви вже маєте аккаунт?</StyledText>
+        <StyledText>Do you have an account?</StyledText>
 
         <Divider height={10} />
 
@@ -140,7 +167,7 @@ export const Register: FC = () => {
             pathname: '/login',
           }}
         >
-          Увійти
+          Sign in
         </StyledLink>
       </LoginWrapper>
     </Container>

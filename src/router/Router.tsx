@@ -6,18 +6,20 @@ import { useDispatch } from 'react-redux'
 import { LayoutComponent } from '../pages'
 import Authorizated from './Authorizated'
 import NoAuthorizated from './NoAuthorizated'
+import { useTypedSelector } from '../hooks'
+import { getUserSelector, initAppAction } from '../store'
 
 const Router: FC = () => {
-  //   const dispatch = useDispatch()
-  //   const { token } = useTypedSelector(getUserSelector)
+    const dispatch = useDispatch()
+    const { token } = useTypedSelector(getUserSelector)
 
-  // useEffect(() => {
-  //   dispatch(initAppAction.request())
-  // }, [dispatch])
+  useEffect(() => {
+    dispatch(initAppAction.request())
+  }, [dispatch])
 
   return (
     <HashRouter basename="/">
-      {true ? (
+      {token ? (
         <LayoutComponent>
           <Authorizated />
         </LayoutComponent>

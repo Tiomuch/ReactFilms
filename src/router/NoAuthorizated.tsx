@@ -13,6 +13,10 @@ const NoAuthorizated: FC = () => {
         path={RoutesTree.register.path}
         element={<RoutesTree.register.component />}
       />
+      <Route
+        path={RoutesTree.restorePassword.path}
+        element={<RoutesTree.restorePassword.component />}
+      />
 
       <Route
         path="*"

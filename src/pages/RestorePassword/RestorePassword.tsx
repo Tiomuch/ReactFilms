@@ -1,11 +1,7 @@
-import { zodResolver } from '@hookform/resolvers/zod'
 import React, { FC, useCallback, useMemo } from 'react'
 import { useState } from 'react'
-import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { Divider } from '../../components'
-import { LoginScheme } from '../../consts'
-import { loginAction } from '../../store'
 import {
   Container,
   LoginWrapper,
@@ -13,14 +9,18 @@ import {
   StyledTextField,
   StyledLink,
   StyledText,
-  StyledInputLabel,
   StyledFormControl,
+  StyledInputLabel,
   StyledPasswordField,
   StyledFormHelperText,
 } from './styled'
 import { TForm } from './types'
+import { Controller, SubmitHandler, useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { RestorePasswordScheme } from '../../consts'
+import { restorePasswordAction } from '../../store'
 
-const Login: FC = () => {
+const RestorePassword: FC = () => {
   const dispatch = useDispatch()
 
   const {
@@ -31,10 +31,11 @@ const Login: FC = () => {
     trigger,
     formState: { isValid, errors },
   } = useForm<TForm>({
-    resolver: zodResolver(LoginScheme),
+    resolver: zodResolver(RestorePasswordScheme),
     defaultValues: {
       name: '',
       password: '',
+      secretNumber: undefined,
     },
   })
 
@@ -52,7 +53,7 @@ const Login: FC = () => {
     if (isValid) {
       console.log('filledData', filledData)
 
-      dispatch(loginAction.request({ ...filledData }))
+      dispatch(restorePasswordAction.request({ ...filledData }))
     }
   }
 
@@ -99,36 +100,45 @@ const Login: FC = () => {
           name="password"
         />
 
+        <Divider height={20} />
+
+        <Controller
+          control={control}
+          render={({ field: { onChange, value } }) => (
+            <StyledTextField
+              error={!!errors?.secretNumber?.message}
+              id="standard-basic"
+              value={(+value).toString()}
+              type="number"
+              label="Secret number"
+              onChange={v =>
+                onChangeText(+v.target.value, onChange, 'secretNumber')
+              }
+              helperText={errors?.secretNumber?.message}
+              variant="standard"
+            />
+          )}
+          name="secretNumber"
+        />
+
         <Divider height={80} />
 
-        <StyledButton onClick={handleSubmit(onSubmit)}>Sign in</StyledButton>
-
-        <Divider height={30} />
-
-        <StyledLink
-          to={{
-            pathname: '/restore-password',
-          }}
-        >
-          Forgot password
-        </StyledLink>
+        <StyledButton onClick={handleSubmit(onSubmit)}>
+          Restore password
+        </StyledButton>
 
         <Divider height={100} />
 
-        <StyledText>Don't have an account?</StyledText>
-
-        <Divider height={10} />
-
         <StyledLink
           to={{
-            pathname: '/register',
+            pathname: '/login',
           }}
         >
-          Sign up
+          Sign in
         </StyledLink>
       </LoginWrapper>
     </Container>
   )
 }
 
-export default Login
+export default RestorePassword

@@ -2,31 +2,44 @@ import { z } from 'zod'
 
 export const RegisterScheme = z
   .object({
-    email: z
+    name: z
       .string()
-      .nonempty({ message: 'Введіть email' })
-      .email({ message: 'Введіть коректний email' }),
+      .min(1, 'Enter correct password')
+      .nonempty({ message: 'Enter email' }),
     password: z
       .string()
-      .min(6, 'Введіть коректний пароль')
-      .nonempty({ message: 'Введіть пароль' }),
+      .min(6, 'Enter correct password')
+      .nonempty({ message: 'Enter password' }),
+    secretNumber: z.number().min(1, 'Enter valid number'),
     repeatPassword: z
       .string()
-      .min(6, 'Введіть коректний пароль')
-      .nonempty({ message: 'Введіть пароль' }),
+      .min(6, 'Enter correct password')
+      .nonempty({ message: 'Enter password' }),
   })
   .refine(data => data.repeatPassword === data.password, {
-    message: 'Паролі повинні збігатися',
+    message: 'Passwords should be equal',
     path: ['repeatPassword'],
   })
 
 export const LoginScheme = z.object({
-  email: z
+  name: z
     .string()
-    .nonempty({ message: 'Введіть email' })
-    .email({ message: 'Введіть коректний email' }),
+    .min(1, 'Enter correct name')
+    .nonempty({ message: 'Enter email' }),
   password: z
     .string()
-    .min(6, 'Введіть коректний пароль')
-    .nonempty({ message: 'Введіть пароль' }),
+    .min(6, 'Enter correct password')
+    .nonempty({ message: 'Enter password' }),
+})
+
+export const RestorePasswordScheme = z.object({
+  name: z
+    .string()
+    .min(1, 'Enter correct name')
+    .nonempty({ message: 'Enter email' }),
+  password: z
+    .string()
+    .min(6, 'Enter correct password')
+    .nonempty({ message: 'Enter password' }),
+  secretNumber: z.number().min(1, 'Enter valid number'),
 })

@@ -7,6 +7,7 @@ import {
   loginAction,
   initAppAction,
   registerAction,
+  restorePasswordAction,
 } from './actions'
 
 const InitialState: TInitialState = {
@@ -26,17 +27,29 @@ export const userReducer = createReducer<TInitialState>(
     }))
     builder.addCase(loginAction.success, (state, { payload }) => ({
       ...state,
-      token: payload.accessToken,
-      refreshToken: payload.refreshToken,
-      user: payload.info,
+      token: payload.token,
+      user: payload.data,
       loading: false,
     }))
     builder.addCase(loginAction.failure, (state, { payload }) => ({
       ...state,
       token: null,
-      refreshToken: null,
       user: null,
       error: payload,
+      loading: false,
+    }))
+
+    builder.addCase(restorePasswordAction.request, state => ({
+      ...state,
+      loading: true,
+      error: null,
+    }))
+    builder.addCase(restorePasswordAction.success, (state, { payload }) => ({
+      ...state,
+      loading: false,
+    }))
+    builder.addCase(restorePasswordAction.failure, (state, { payload }) => ({
+      ...state,
       loading: false,
     }))
 
@@ -47,15 +60,13 @@ export const userReducer = createReducer<TInitialState>(
     }))
     builder.addCase(registerAction.success, (state, { payload }) => ({
       ...state,
-      token: payload.accessToken,
-      refreshToken: payload.refreshToken,
-      user: payload.info,
+      token: payload.token,
+      user: payload.data,
       loading: false,
     }))
     builder.addCase(registerAction.failure, (state, { payload }) => ({
       ...state,
       token: null,
-      refreshToken: null,
       user: null,
       error: payload,
       loading: false,
@@ -68,13 +79,11 @@ export const userReducer = createReducer<TInitialState>(
     builder.addCase(getUserAction.success, (state, { payload }) => ({
       ...state,
       user: payload.data,
-      refreshToken: payload.data.refreshToken,
       loading: false,
     }))
     builder.addCase(getUserAction.failure, (state, { payload }) => ({
       ...state,
       token: null,
-      refreshToken: null,
       user: null,
       loading: false,
     }))
@@ -82,7 +91,6 @@ export const userReducer = createReducer<TInitialState>(
     builder.addCase(logoutAction, state => ({
       ...state,
       token: null,
-      refreshToken: null,
       user: null,
     }))
 

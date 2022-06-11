@@ -6,6 +6,7 @@ import {
   GetUserActionResponse,
   LoginUserActionPayload,
   LoginUserActionResponse,
+  RegisterUserActionPayload,
 } from './types'
 
 export const loginAction = createApiActions<
@@ -14,8 +15,14 @@ export const loginAction = createApiActions<
   AxiosError
 >(createActionTypes('USER/LOGIN_USER'))
 
+export const restorePasswordAction = createApiActions<
+  RegisterUserActionPayload,
+  LoginUserActionResponse,
+  AxiosError
+>(createActionTypes('USER/RESTORE_PASSWORD'))
+
 export const registerAction = createApiActions<
-  LoginUserActionPayload,
+  RegisterUserActionPayload,
   LoginUserActionResponse,
   AxiosError
 >(createActionTypes('USER/REGISTER_USER'))

@@ -1,4 +1,9 @@
-import { LoginPage, MainPage, RegisterPage } from '../pages'
+import {
+  LoginPage,
+  MainPage,
+  RegisterPage,
+  RestorePasswordPage,
+} from '../pages'
 import { TRoutesTree } from './types'
 
 export const RoutesTree: TRoutesTree = {
@@ -16,5 +21,10 @@ export const RoutesTree: TRoutesTree = {
     name: 'register',
     path: '/register',
     component: RegisterPage,
+  },
+  restorePassword: {
+    name: 'restorePassword',
+    path: '/restore-password',
+    component: RestorePasswordPage,
   },
 }

@@ -3,6 +3,7 @@ import {
   GetUserActionResponse,
   LoginUserActionPayload,
   LoginUserActionResponse,
+  RegisterUserActionPayload,
 } from './types'
 
 import { setAuthorizationHeadersProp } from '../../helpers'
@@ -17,12 +18,22 @@ export class UserAPI extends HttpService {
     return this.request<LoginUserActionResponse>('LOGIN', {
       url: USER_URL.login,
       method: 'POST',
-      data: request,
+      data: { ...request },
+    })
+  }
+
+  static restorePassword(
+    request: RegisterUserActionPayload,
+  ): Promise<AxiosResponse<LoginUserActionResponse>> {
+    return this.request<LoginUserActionResponse>('RESTORE_PASSWORD', {
+      url: USER_URL.restorePassword,
+      method: 'POST',
+      data: { ...request },
     })
   }
 
   static register(
-    request: LoginUserActionPayload,
+    request: RegisterUserActionPayload,
   ): Promise<AxiosResponse<LoginUserActionResponse>> {
     return this.request<LoginUserActionResponse>('REGISTER', {
       url: USER_URL.register,

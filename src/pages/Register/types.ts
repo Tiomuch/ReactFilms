@@ -1,5 +1,6 @@
 export type TForm = {
-  email: string
+  name: string
   password: string
   repeatPassword: string
+  secretNumber: number
 }
