@@ -44,7 +44,7 @@ function* loginWorker({ payload }: ReturnType<typeof loginAction['request']>) {
       yield call([UserAPI, UserAPI.login], { ...payload })
 
     if (response) {
-      yield put(loginAction.success(response))
+      yield put(loginAction.success(response.data))
     }
   } catch (e: any) {
     console.log('Error: loginWorker', e)
@@ -61,7 +61,7 @@ function* registerWorker({
       yield call([UserAPI, UserAPI.register], { ...payload })
 
     if (response) {
-      yield put(registerAction.success(response))
+      yield put(registerAction.success(response.data))
     }
   } catch (e: any) {
     console.log('Error: registerWorker', e)

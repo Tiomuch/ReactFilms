@@ -1,7 +1,5 @@
 export type Film = {
-  _id: string
-  createdAt: string
-  updatedAt: string
+  id: string
   image: string
   title: string
   description: string
@@ -12,14 +10,32 @@ export type GetFilmsActionPayload = {
   limit: number
 }
 
-export type GetFilmsActionResponse = {
-  data: Film[]
-}
+export type GetFilmsActionResponse = any
 
 export type TInitialState = {
   films: Film[]
+  total: number
 }
 
 export type PayloadAuth = {
   authorization: string
+}
+
+export type CreateFilmActionPayload = {
+  title: string
+  description: string
+  image: string
+}
+
+export type UpdateFilmActionPayload = {
+  title: string
+  description: string
+  image: string
+  id: string
+}
+
+export type DeleteFilmActionPayload = {
+  id: string
+  page?: number
+  limit?: number
 }

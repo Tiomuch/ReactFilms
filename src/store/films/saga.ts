@@ -8,7 +8,12 @@ import {
 } from '@redux-saga/core/effects'
 import { PromiseReturnType } from '../types'
 import { getUserSelector } from '../user'
-import { getFilmsAction } from './actions'
+import {
+  createFilmAction,
+  deleteFilmAction,
+  getFilmsAction,
+  updateFilmAction,
+} from './actions'
 import { FilmsAPI } from './api.service'
 
 function* verifyTokenWorker() {
@@ -42,6 +47,71 @@ function* getFilmsWorker({
   }
 }
 
+function* createFilmWorker({
+  payload,
+}: ReturnType<typeof createFilmAction['request']>) {
+  try {
+    const token: string = yield call(verifyTokenWorker)
+
+    const response: PromiseReturnType<ReturnType<typeof FilmsAPI.createFilm>> =
+      yield call([FilmsAPI, FilmsAPI.createFilm], {
+        authorization: token ?? '',
+        ...payload,
+      })
+
+    yield put(createFilmAction.success(response.data))
+  } catch (e) {
+    console.log('Error: createFilmWorker', e)
+
+    yield put(createFilmAction.failure(e as any))
+  }
+}
+
+function* updateFilmWorker({
+  payload,
+}: ReturnType<typeof updateFilmAction['request']>) {
+  try {
+    const token: string = yield call(verifyTokenWorker)
+
+    const response: PromiseReturnType<ReturnType<typeof FilmsAPI.updateFilm>> =
+      yield call([FilmsAPI, FilmsAPI.updateFilm], {
+        authorization: token ?? '',
+        ...payload,
+      })
+
+    yield put(updateFilmAction.success(response.data))
+  } catch (e) {
+    console.log('Error: updateFilmWorker', e)
+
+    yield put(updateFilmAction.failure(e as any))
+  }
+}
+
+function* deleteFilmWorker({ payload }: ReturnType<typeof deleteFilmAction>) {
+  try {
+    const token: string = yield call(verifyTokenWorker)
+
+    const response: PromiseReturnType<ReturnType<typeof FilmsAPI.deleteFilm>> =
+      yield call([FilmsAPI, FilmsAPI.deleteFilm], {
+        authorization: token ?? '',
+        id: payload.id,
+      })
+
+    yield put(
+      getFilmsAction.request({
+        page: payload.page ?? 1,
+        limit: payload.limit ?? 10,
+      }),
+    )
+    yield take(getFilmsAction.success)
+  } catch (e) {
+    console.log('Error: deleteFilmWorker', e)
+  }
+}
+
 export function* filmsWatcher() {
   yield takeLatest(getFilmsAction.request, getFilmsWorker)
+  yield takeLatest(createFilmAction.request, createFilmWorker)
+  yield takeLatest(updateFilmAction.request, updateFilmWorker)
+  yield takeLatest(deleteFilmAction, deleteFilmWorker)
 }

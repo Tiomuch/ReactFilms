@@ -1,10 +1,10 @@
 import { combineReducers } from '@reduxjs/toolkit'
 import { userReducer } from './user'
 import { filmsReducer } from './films'
-import { commentsReducer } from './comments'
+import { cashFeesReducer } from './cashFees'
 
 export default combineReducers({
   user: userReducer,
   films: filmsReducer,
-  comments: commentsReducer,
+  cashFees: cashFeesReducer,
 })

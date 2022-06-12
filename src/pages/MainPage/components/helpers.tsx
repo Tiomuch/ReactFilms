@@ -7,51 +7,33 @@ import {
   NotToChoosePagination,
   OffButtonPagination,
   StyledDeleteButton,
+  StyledEditButton,
   StyledNumberLink,
   StyledTableNameLink,
 } from '../styled'
-// import { TAdditionalServices } from '../types'
+import { TFilms } from '../types'
 
-// export const data = (
-//   oldData: TAdditionalServices[],
-//   handleDelete: (id: string) => () => void,
-//   handleModal: (status: boolean, data?: TAdditionalServices) => () => void,
-// ) => {
-//   return oldData?.map(entity => {
-//     return {
-//       id: (
-//         <StyledNumberLink onClick={handleModal(false)}>
-//           {entity?.index ?? '-'}
-//         </StyledNumberLink>
-//       ),
-//       name: (
-//         <StyledTableNameLink onClick={handleModal(false, entity)}>
-//           {entity?.title ?? '-'}
-//         </StyledTableNameLink>
-//       ),
-//       adding: (
-//         <StyledNumberLink onClick={handleModal(false, entity)}>
-//           {entity?.value ?? '-'}
-//         </StyledNumberLink>
-//       ),
-//       type: (
-//         <StyledNumberLink onClick={handleModal(false, entity)}>
-//           {entity?.valueType === 1
-//             ? 'Sum'
-//             : entity?.valueType === 2
-//             ? '%'
-//             : '-'}
-//         </StyledNumberLink>
-//       ),
-//       delete: (
-//         <StyledDeleteButton onClick={handleDelete(entity?._id)}>
-//           Delete
-//         </StyledDeleteButton>
-//       ),
-//       key: entity?._id,
-//     }
-//   })
-// }
+export const data = (
+  oldData: TFilms[],
+  handleDelete: (id: string) => () => void,
+) => {
+  return oldData?.map(entity => {
+    return {
+      title: <StyledNumberLink>{entity?.title ?? '-'}</StyledNumberLink>,
+      edit: (
+        <StyledEditButton onClick={handleDelete(entity?.id)}>
+          Edit
+        </StyledEditButton>
+      ),
+      delete: (
+        <StyledDeleteButton onClick={handleDelete(entity?.id)}>
+          Delete
+        </StyledDeleteButton>
+      ),
+      key: entity?.id,
+    }
+  })
+}
 
 export const putPaginationElement = (
   el: string,

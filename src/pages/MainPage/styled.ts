@@ -67,6 +67,17 @@ export const StyledDeleteButton = styled.div`
   cursor: pointer;
 `
 
+export const StyledEditButton = styled.div`
+  ${FONT({
+    family: 'Roboto',
+    weight: '400',
+    size: '14px',
+    color: COLORS.whiteGray,
+  })}
+
+  cursor: pointer;
+`
+
 export const OffButtonPagination = styled.div`
   ${FONT({
     family: 'Montserrat',
@@ -120,7 +131,15 @@ export const ButtonPagination = styled.div`
 `
 
 export const TableContainer = styled.div`
-  width: 70%;
+  width: 100%;
+`
+
+export const StyledTextField = styled(TextField)`
+  width: 230px;
+
+  text-indent: 5px;
+
+  ${FONT({ family: 'Roboto', size: '16px', weight: '400' })}
 `
 
 export const StyledBody = styled.div`

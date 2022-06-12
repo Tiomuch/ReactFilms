@@ -1,24 +1,13 @@
 export const columns = [
   {
-    title: 'ID',
-    dataIndex: 'id',
-    key: 'id',
-    // width: '6%',
+    title: 'Title',
+    dataIndex: 'title',
+    key: 'title',
   },
   {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
-  },
-  {
-    title: 'Adding',
-    dataIndex: 'adding',
-    key: 'adding',
-  },
-  {
-    title: 'Type',
-    dataIndex: 'type',
-    key: 'type',
+    title: '',
+    dataIndex: 'edit',
+    key: 'edit',
   },
   {
     title: '',
@@ -26,8 +15,3 @@ export const columns = [
     key: 'delete',
   },
 ]
-
-export const ServiceTypesName = {
-  1: 'Sum',
-  2: '%',
-}

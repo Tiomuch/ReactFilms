@@ -78,7 +78,7 @@ export const userReducer = createReducer<TInitialState>(
     }))
     builder.addCase(getUserAction.success, (state, { payload }) => ({
       ...state,
-      user: payload.data,
+      user: payload,
       loading: false,
     }))
     builder.addCase(getUserAction.failure, (state, { payload }) => ({

@@ -4,7 +4,7 @@ export type TUser = {
   password: string
   secretNumber: number
   updatedAt: string
-  _id: string
+  id: string
 }
 
 export type TInitialState = {
