@@ -10,4 +10,9 @@ export type TRoute<N> = {
   component: FC
 }
 
-export type TRouteNames = 'main' | 'login' | 'register' | 'restorePassword'
+export type TRouteNames =
+  | 'main'
+  | 'login'
+  | 'register'
+  | 'restorePassword'
+  | 'cashFees'

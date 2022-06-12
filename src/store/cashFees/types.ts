@@ -1,8 +1,6 @@
 export type CashFees = {
   id: string
-  createdAt: string
-  updatedAt: string
-  film_id: string
+  film_id: number
   country: string
   year: number
   money: number
@@ -13,12 +11,11 @@ export type GetCashFeesActionPayload = {
   limit: number
 }
 
-export type GetCashFeesActionResponse = {
-  data: CashFees[]
-}
+export type GetCashFeesActionResponse = any
 
 export type TInitialState = {
   cashFees: CashFees[]
+  total: number
 }
 
 export type PayloadAuth = {

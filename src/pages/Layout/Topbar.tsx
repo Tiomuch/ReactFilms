@@ -16,10 +16,8 @@ import {
 const Topbar = () => {
   const dispatch = useDispatch()
 
-  // const { user } = useTypedSelector(store => store.user)
-
   const logout = () => {
-    // dispatch(logoutAction())
+    dispatch(logoutAction())
   }
 
   return (
@@ -29,10 +27,10 @@ const Topbar = () => {
 
         <Divider width={20} />
 
-        <Logo>React Films</Logo>
+        <Logo to={{ pathname: `/main` }}>React Films</Logo>
       </StyledLeftController>
 
-      <MiniTopIcon src={Assets.PLUS_ICON} />
+      <Logo to={{ pathname: `/cash-fees` }}>Cash fees</Logo>
 
       <MiniTopIcon onClick={logout} src={Assets.LOGOUT_ICON} />
     </TopbarWrapper>

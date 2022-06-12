@@ -7,7 +7,7 @@ import { useTypedSelector } from '../../hooks'
 import { MainTable } from './components'
 import { getUserSelector } from '../../store'
 
-const MainPage: FC = () => {
+const CashFees: FC = () => {
   const { user } = useTypedSelector(getUserSelector)
 
   return (
@@ -17,4 +17,4 @@ const MainPage: FC = () => {
   )
 }
 
-export default MainPage
+export default CashFees

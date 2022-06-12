@@ -1,4 +1,4 @@
-import { NavLink as NavLinks } from 'react-router-dom'
+import { Link, NavLink as NavLinks } from 'react-router-dom'
 import styled from 'styled-components'
 import { FLEX, FONT, SHADOW } from '../../utils'
 import { COLORS } from '../../assets'
@@ -34,7 +34,7 @@ export const MiniTopIcon = styled.img`
   /* border-radius: 50%; */
 `
 
-export const Logo = styled.p`
+export const Logo = styled(Link)`
   ${FONT({
     size: '20px',
     weight: '300',

@@ -9,6 +9,10 @@ const Authorizated: FC = () => {
         path={RoutesTree.main.path}
         element={<RoutesTree.main.component />}
       />
+      <Route
+        path={RoutesTree.cashFees.path}
+        element={<RoutesTree.cashFees.component />}
+      />
 
       <Route
         path="*"

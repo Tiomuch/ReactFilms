@@ -4,6 +4,7 @@ import { TInitialState } from './types'
 
 const InitialState: TInitialState = {
   cashFees: [],
+  total: 1,
 }
 
 export const cashFeesReducer = createReducer<TInitialState>(
@@ -16,6 +17,7 @@ export const cashFeesReducer = createReducer<TInitialState>(
     builder.addCase(getCashFeesAction.success, (state, { payload }) => ({
       ...state,
       cashFees: payload.data,
+      total: payload.total === 0 ? 1 : payload.total,
       loading: false,
     }))
     builder.addCase(getCashFeesAction.failure, (state, { payload }) => ({

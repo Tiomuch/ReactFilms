@@ -3,6 +3,7 @@ import {
   MainPage,
   RegisterPage,
   RestorePasswordPage,
+  CashFeesPage,
 } from '../pages'
 import { TRoutesTree } from './types'
 
@@ -11,6 +12,11 @@ export const RoutesTree: TRoutesTree = {
     name: 'main',
     path: '/main',
     component: MainPage,
+  },
+  cashFees: {
+    name: 'cashFees',
+    path: '/cash-fees',
+    component: CashFeesPage,
   },
   login: {
     name: 'login',
