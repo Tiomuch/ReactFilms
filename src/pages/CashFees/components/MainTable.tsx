@@ -16,6 +16,7 @@ import {
   StyledTextField,
 } from '../styled'
 import { TypedCashFees } from '../types'
+import _ from 'lodash'
 
 export const MainTable: FC = () => {
   const { user } = useTypedSelector(state => state.user)
@@ -39,6 +40,21 @@ export const MainTable: FC = () => {
     setChosenPage(page)
   }
 
+  const onChangeLimit = useCallback(
+    _.debounce(limit => {
+      dispatch(getCashFeesAction.request({ page: chosenPage, limit }))
+    }, 1000),
+    [],
+  )
+
+  const changeLimit = (limit: number) => {
+    if (limit > 0) {
+      setPaginationLimit(limit)
+
+      onChangeLimit(limit)
+    }
+  }
+
   useEffect(() => {
     dispatch(
       getCashFeesAction.request({
@@ -60,6 +76,22 @@ export const MainTable: FC = () => {
 
   return (
     <TableContainer>
+      <StyledTextField
+        name="adding"
+        type="number"
+        value={(+paginationLimit).toString()}
+        inputProps={{
+          style: {
+            paddingLeft: '5px',
+          },
+        }}
+        label="Limit"
+        onChange={e => changeLimit(+e.target.value)}
+        variant="standard"
+      />
+
+      <Divider height={30} />
+
       <TableWrapper>
         <Table
           columns={columns}

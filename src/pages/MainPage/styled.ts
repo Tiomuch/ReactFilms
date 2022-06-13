@@ -2,6 +2,7 @@ import TextField from '@mui/material/TextField'
 import styled from 'styled-components'
 import { FLEX, FONT } from '../../utils'
 import { COLORS } from '../../assets'
+import { Link } from 'react-router-dom'
 
 export const Container = styled.div`
   width: 100%;
@@ -67,12 +68,12 @@ export const StyledDeleteButton = styled.div`
   cursor: pointer;
 `
 
-export const StyledEditButton = styled.div`
+export const StyledEditButton = styled(Link)`
   ${FONT({
     family: 'Roboto',
     weight: '400',
     size: '14px',
-    color: COLORS.whiteGray,
+    color: COLORS.darkBlue,
   })}
 
   cursor: pointer;
@@ -191,4 +192,20 @@ export const StyledRow = styled.tr`
     color: COLORS.veryDarkBlack,
     weight: '400',
   })}
+`
+
+export const StyledButton = styled(Link)`
+  width: 240px;
+  height: 47px;
+  text-decoration: none;
+  ${FLEX({})}
+  ${FONT({
+    family: 'Montserrat',
+    size: '24px',
+    color: COLORS.white,
+    weight: '400',
+  })}
+  background: ${COLORS.green};
+  border-radius: 40px;
+  cursor: pointer;
 `

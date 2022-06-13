@@ -1,10 +1,17 @@
 import { createReducer } from '@reduxjs/toolkit'
-import { createFilmAction, getFilmsAction, updateFilmAction } from './actions'
+import {
+  clearFilmAction,
+  createFilmAction,
+  getFilmByIdAction,
+  getFilmsAction,
+  updateFilmAction,
+} from './actions'
 import { TInitialState } from './types'
 
 const InitialState: TInitialState = {
   films: [],
   total: 1,
+  film: null,
 }
 
 export const filmsReducer = createReducer<TInitialState>(
@@ -21,6 +28,21 @@ export const filmsReducer = createReducer<TInitialState>(
       loading: false,
     }))
     builder.addCase(getFilmsAction.failure, (state, { payload }) => ({
+      ...state,
+      error: payload,
+      loading: false,
+    }))
+
+    builder.addCase(getFilmByIdAction.request, state => ({
+      ...state,
+      loading: true,
+    }))
+    builder.addCase(getFilmByIdAction.success, (state, { payload }) => ({
+      ...state,
+      film: payload.data,
+      loading: false,
+    }))
+    builder.addCase(getFilmByIdAction.failure, (state, { payload }) => ({
       ...state,
       error: payload,
       loading: false,
@@ -52,6 +74,11 @@ export const filmsReducer = createReducer<TInitialState>(
       ...state,
       error: payload,
       loading: false,
+    }))
+
+    builder.addCase(clearFilmAction, state => ({
+      ...state,
+      film: null,
     }))
   },
 )

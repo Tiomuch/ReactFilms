@@ -36,7 +36,7 @@ const Register: FC = () => {
       name: '',
       password: '',
       repeatPassword: '',
-      secretNumber: undefined,
+      secret_number: undefined,
     },
   })
 
@@ -58,7 +58,7 @@ const Register: FC = () => {
         registerAction.request({
           password: filledData.password,
           name: filledData.name,
-          secretNumber: filledData.secretNumber,
+          secret_number: filledData.secret_number,
         }),
       )
     }
@@ -137,19 +137,19 @@ const Register: FC = () => {
           control={control}
           render={({ field: { onChange, value } }) => (
             <StyledTextField
-              error={!!errors?.secretNumber?.message}
+              error={!!errors?.secret_number?.message}
               id="standard-basic"
               value={(+value).toString()}
               type="number"
               label="Secret number"
               onChange={v =>
-                onChangeText(+v.target.value, onChange, 'secretNumber')
+                onChangeText(+v.target.value, onChange, 'secret_number')
               }
-              helperText={errors?.secretNumber?.message}
+              helperText={errors?.secret_number?.message}
               variant="standard"
             />
           )}
-          name="secretNumber"
+          name="secret_number"
         />
 
         <Divider height={80} />

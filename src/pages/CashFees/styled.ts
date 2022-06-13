@@ -136,6 +136,7 @@ export const TableContainer = styled.div`
 
 export const StyledTextField = styled(TextField)`
   width: 230px;
+  margin: 20px 0 0 30px;
 
   text-indent: 5px;
 

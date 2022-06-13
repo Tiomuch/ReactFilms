@@ -21,7 +21,7 @@ export const data = (
     return {
       title: <StyledNumberLink>{entity?.title ?? '-'}</StyledNumberLink>,
       edit: (
-        <StyledEditButton onClick={handleDelete(entity?.id)}>
+        <StyledEditButton to={{ pathname: `/film/${entity?.id ?? ''}` }}>
           Edit
         </StyledEditButton>
       ),

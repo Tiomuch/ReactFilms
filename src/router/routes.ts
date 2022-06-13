@@ -4,6 +4,7 @@ import {
   RegisterPage,
   RestorePasswordPage,
   CashFeesPage,
+  FilmPage,
 } from '../pages'
 import { TRoutesTree } from './types'
 
@@ -32,5 +33,10 @@ export const RoutesTree: TRoutesTree = {
     name: 'restorePassword',
     path: '/restore-password',
     component: RestorePasswordPage,
+  },
+  film: {
+    name: 'film',
+    path: '/film/:id',
+    component: FilmPage,
   },
 }

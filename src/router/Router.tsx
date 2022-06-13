@@ -10,8 +10,8 @@ import { useTypedSelector } from '../hooks'
 import { getUserSelector, initAppAction } from '../store'
 
 const Router: FC = () => {
-    const dispatch = useDispatch()
-    const { token } = useTypedSelector(getUserSelector)
+  const dispatch = useDispatch()
+  const { token } = useTypedSelector(getUserSelector)
 
   useEffect(() => {
     dispatch(initAppAction.request())
@@ -19,7 +19,7 @@ const Router: FC = () => {
 
   return (
     <HashRouter basename="/">
-      {token ? (
+      {!token ? (
         <LayoutComponent>
           <Authorizated />
         </LayoutComponent>

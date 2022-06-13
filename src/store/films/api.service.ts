@@ -9,6 +9,7 @@ import {
   CreateFilmActionPayload,
   UpdateFilmActionPayload,
   DeleteFilmActionPayload,
+  GetFilmByIdActionPayload,
 } from './types'
 
 export class FilmsAPI extends HttpService {
@@ -64,6 +65,18 @@ export class FilmsAPI extends HttpService {
     return this.request<GetFilmsActionResponse>('DELETE_FILM', {
       url: FILMS_URL.updateFilm(request.id),
       method: 'DELETE',
+      headers: {
+        ...setAuthorizationHeadersProp(request.authorization),
+      },
+    })
+  }
+
+  static getFilmById(
+    request: GetFilmByIdActionPayload & PayloadAuth,
+  ): Promise<AxiosResponse<GetFilmsActionResponse>> {
+    return this.request<GetFilmsActionResponse>('GET_FILM_BY_ID', {
+      url: FILMS_URL.updateFilm(request.id),
+      method: 'GET',
       headers: {
         ...setAuthorizationHeadersProp(request.authorization),
       },

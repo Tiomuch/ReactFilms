@@ -13,6 +13,10 @@ const Authorizated: FC = () => {
         path={RoutesTree.cashFees.path}
         element={<RoutesTree.cashFees.component />}
       />
+      <Route
+        path={RoutesTree.film.path}
+        element={<RoutesTree.film.component />}
+      />
 
       <Route
         path="*"

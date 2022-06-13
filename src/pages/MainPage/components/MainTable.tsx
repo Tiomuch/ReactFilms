@@ -18,6 +18,7 @@ import {
   StyledTable,
   StyledRow,
   StyledTextField,
+  StyledButton,
 } from '../styled'
 import { TypedFilms } from '../types'
 import _ from 'lodash'
@@ -84,6 +85,12 @@ export const MainTable: FC = () => {
 
   return (
     <TableContainer>
+      <Divider height={30} />
+
+      <StyledButton to={{ pathname: '/film/new' }}>Create</StyledButton>
+
+      <Divider height={30} />
+
       <StyledTextField
         name="adding"
         type="number"
@@ -94,7 +101,7 @@ export const MainTable: FC = () => {
           },
         }}
         label="Limit"
-        onChange={val => changeLimit(+val)}
+        onChange={e => changeLimit(+e.target.value)}
         variant="standard"
       />
 

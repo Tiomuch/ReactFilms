@@ -11,6 +11,7 @@ import { getUserSelector } from '../user'
 import {
   createFilmAction,
   deleteFilmAction,
+  getFilmByIdAction,
   getFilmsAction,
   updateFilmAction,
 } from './actions'
@@ -44,6 +45,26 @@ function* getFilmsWorker({
     console.log('Error: getFilmsWorker', e)
 
     yield put(getFilmsAction.failure(e as any))
+  }
+}
+
+function* getFilmByIdWorker({
+  payload,
+}: ReturnType<typeof getFilmByIdAction['request']>) {
+  try {
+    const token: string = yield call(verifyTokenWorker)
+
+    const response: PromiseReturnType<ReturnType<typeof FilmsAPI.getFilmById>> =
+      yield call([FilmsAPI, FilmsAPI.getFilmById], {
+        authorization: token ?? '',
+        id: payload.id,
+      })
+
+    yield put(getFilmByIdAction.success(response))
+  } catch (e) {
+    console.log('Error: getFilmByIdWorker', e)
+
+    yield put(getFilmByIdAction.failure(e as any))
   }
 }
 
@@ -113,5 +134,6 @@ export function* filmsWatcher() {
   yield takeLatest(getFilmsAction.request, getFilmsWorker)
   yield takeLatest(createFilmAction.request, createFilmWorker)
   yield takeLatest(updateFilmAction.request, updateFilmWorker)
+  yield takeLatest(getFilmByIdAction.request, getFilmByIdWorker)
   yield takeLatest(deleteFilmAction, deleteFilmWorker)
 }

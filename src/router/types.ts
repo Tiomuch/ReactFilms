@@ -16,3 +16,4 @@ export type TRouteNames =
   | 'register'
   | 'restorePassword'
   | 'cashFees'
+  | 'film'

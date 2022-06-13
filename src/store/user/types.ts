@@ -2,7 +2,7 @@ export type TUser = {
   createdAt: string
   name: string
   password: string
-  secretNumber: number
+  secret_number: number
   updatedAt: string
   id: string
 }
@@ -22,7 +22,7 @@ export type LoginUserActionPayload = {
 export type RegisterUserActionPayload = {
   name: string
   password: string
-  secretNumber: number
+  secret_number: number
 }
 
 export type LoginUserActionResponse = any

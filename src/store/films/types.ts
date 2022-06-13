@@ -15,6 +15,7 @@ export type GetFilmsActionResponse = any
 export type TInitialState = {
   films: Film[]
   total: number
+  film: null | Film
 }
 
 export type PayloadAuth = {
@@ -38,4 +39,8 @@ export type DeleteFilmActionPayload = {
   id: string
   page?: number
   limit?: number
+}
+
+export type GetFilmByIdActionPayload = {
+  id: string
 }

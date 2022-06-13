@@ -7,6 +7,7 @@ import {
   CreateFilmActionPayload,
   DeleteFilmActionPayload,
   UpdateFilmActionPayload,
+  GetFilmByIdActionPayload,
 } from './types'
 
 export const getFilmsAction = createApiActions<
@@ -31,3 +32,13 @@ export const updateFilmAction = createApiActions<
   GetFilmsActionResponse,
   AxiosError
 >(createActionTypes('FILMS/UPDATE_FILM'))
+
+export const getFilmByIdAction = createApiActions<
+  GetFilmByIdActionPayload,
+  GetFilmsActionResponse,
+  AxiosError
+>(createActionTypes('FILMS/GET_FILM_BY_ID'))
+
+export const clearFilmAction = createAction<void, 'FILMS/CLEAR_FILM'>(
+  'FILMS/CLEAR_FILM',
+)
