@@ -69,6 +69,7 @@ export const filmsReducer = createReducer<TInitialState>(
     }))
     builder.addCase(updateFilmAction.success, (state, { payload }) => ({
       ...state,
+      film: payload.data,
       loading: false,
     }))
     builder.addCase(updateFilmAction.failure, (state, { payload }) => ({

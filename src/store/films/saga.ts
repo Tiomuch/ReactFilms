@@ -104,7 +104,7 @@ function* updateFilmWorker({
         ...payload,
       })
 
-    yield put(updateFilmAction.success(response.data))
+    yield put(updateFilmAction.success(response))
 
     alert('Film updated successfully')
   } catch (e) {
