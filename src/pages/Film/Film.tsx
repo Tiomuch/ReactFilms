@@ -71,6 +71,12 @@ const Film: FC = () => {
   }
 
   useEffect(() => {
+    if (!!film && id === 'new') {
+      navigate(`/film/${film?.id ?? ''}`)
+    }
+  }, [film])
+
+  useEffect(() => {
     id !== 'new' && dispatch(getFilmByIdAction.request({ id: id ?? '' }))
 
     return () => {

@@ -86,6 +86,8 @@ function* restorePasswordWorker({
   } catch (e: any) {
     console.log('Error: restorePasswordWorker', e)
 
+    alert('Password change error')
+
     yield put(restorePasswordAction.failure(e))
   }
 }

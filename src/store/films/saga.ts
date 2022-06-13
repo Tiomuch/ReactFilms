@@ -81,8 +81,12 @@ function* createFilmWorker({
       })
 
     yield put(createFilmAction.success(response.data))
+
+    alert('Film created successfully')
   } catch (e) {
     console.log('Error: createFilmWorker', e)
+
+    alert('Film create error')
 
     yield put(createFilmAction.failure(e as any))
   }
@@ -101,8 +105,12 @@ function* updateFilmWorker({
       })
 
     yield put(updateFilmAction.success(response.data))
+
+    alert('Film updated successfully')
   } catch (e) {
     console.log('Error: updateFilmWorker', e)
+
+    alert('Film update error')
 
     yield put(updateFilmAction.failure(e as any))
   }
@@ -125,8 +133,12 @@ function* deleteFilmWorker({ payload }: ReturnType<typeof deleteFilmAction>) {
       }),
     )
     yield take(getFilmsAction.success)
+
+    alert('Film deleted successfully')
   } catch (e) {
     console.log('Error: deleteFilmWorker', e)
+
+    alert('Film delete error')
   }
 }
 

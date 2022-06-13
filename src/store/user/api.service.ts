@@ -27,7 +27,7 @@ export class UserAPI extends HttpService {
   ): Promise<AxiosResponse<LoginUserActionResponse>> {
     return this.request<LoginUserActionResponse>('RESTORE_PASSWORD', {
       url: USER_URL.restorePassword,
-      method: 'POST',
+      method: 'PUT',
       data: { ...request },
     })
   }
