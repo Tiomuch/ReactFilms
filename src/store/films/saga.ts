@@ -80,7 +80,7 @@ function* createFilmWorker({
         ...payload,
       })
 
-    yield put(createFilmAction.success(response.data))
+    yield put(createFilmAction.success(response))
 
     alert('Film created successfully')
   } catch (e) {
