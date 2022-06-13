@@ -19,7 +19,7 @@ const Router: FC = () => {
 
   return (
     <HashRouter basename="/">
-      {!token ? (
+      {token ? (
         <LayoutComponent>
           <Authorizated />
         </LayoutComponent>
